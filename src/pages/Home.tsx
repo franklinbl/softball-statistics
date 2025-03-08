@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Modal from '../components/Modal';
 import GameForm from '../components/GameForm';
 import { useAuth } from '../hooks/useAuth';
+import LatestGamesCard from '../components/LatestGamesCard';
 
 const Home: React.FC = () => {
   const {user} = useAuth();
@@ -12,6 +13,8 @@ const Home: React.FC = () => {
 
   return (
     <div className="text-center">
+      <LatestGamesCard />
+
       <h1 className="text-4xl font-bold ">Página de Inicio</h1>
       <p className="mt-4">
         Bienvenido a la página de inicio. Aquí puedes comenzar a explorar.

@@ -2,7 +2,7 @@ import { useState, useEffect, useMemo, useCallback } from "react";
 import {
   collection, getDocs, addDoc, doc, updateDoc, getDoc,
   query, where, orderBy, QueryConstraint, WhereFilterOp,
-  WithFieldValue, DocumentReference
+  WithFieldValue, DocumentReference, limit
 } from "firebase/firestore";
 import { db } from "../firebase/firebaseConfig";
 
@@ -15,7 +15,8 @@ interface Filter {
 export const useFirestore = <T extends { id?: string }>(
   collectionName: string,
   orderByFields: { field: string; direction: "asc" | "desc" }[] = [],
-  filters: Filter[] = []
+  filters: Filter[] = [],
+  limitParam?: number
 ) => {
   const [data, setData] = useState<T[]>([]);
   const [loading, setLoading] = useState(true);
@@ -38,6 +39,9 @@ export const useFirestore = <T extends { id?: string }>(
       memoizedOrderByFields.forEach((order) => {
         queryConstraints.push(orderBy(order.field, order.direction));
       });
+      if (limitParam) {
+        queryConstraints.push(limit(limitParam));
+      }
       const q = query(collection(db, collectionName), ...queryConstraints);
       const querySnapshot = await getDocs(q);
       const newData = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() } as T));
@@ -48,17 +52,24 @@ export const useFirestore = <T extends { id?: string }>(
     } finally {
       setLoading(false);
     }
-  }, [collectionName, memoizedFilters, memoizedOrderByFields]);
+  }, [collectionName, memoizedFilters, memoizedOrderByFields, limitParam]);
 
   useEffect(() => {
     fetchData();
-  }, [fetchData]); // Only depends on fetchData, which is stable thanks to useCallback
+  }, [fetchData]);
 
   // Get all documents from a collection with optional filters
-  const getCollection = async <T>(collectionName: string, filters: [string, WhereFilterOp, string | number | boolean | Date | null][] = []): Promise<T[]> => {
+  const getCollection = async <T>(
+    collectionName: string,
+    filters: [string, WhereFilterOp, string | number | boolean | Date | null][] = [],
+    limitParam?: number
+  ): Promise<T[]> => {
     setLoading(true);
     try {
       const queryConstraints: QueryConstraint[] = filters.map(([field, op, value]) => where(field, op, value));
+      if (limitParam) {
+        queryConstraints.push(limit(limitParam));
+      }
       const q = query(collection(db, collectionName), ...queryConstraints);
       const querySnapshot = await getDocs(q);
       return querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }) as T);
