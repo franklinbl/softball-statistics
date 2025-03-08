@@ -21,7 +21,7 @@ const Statistics: React.FC = () => {
 
       <div>
         <h2 className="text-xl font-semibold text-gray-300 mb-4">Torneos</h2>
-        <TournamentsTable tournaments={tournaments} actionType="REDIRECT" onEdit={() => {}} />
+        <TournamentsTable tournaments={tournaments} onEdit={() => {}} />
       </div>
     </div>
   );

@@ -8,6 +8,7 @@ import GameTable from '../components/GameTable';
 import GameForm from "../components/GameForm";
 import { useFirestore } from "../hooks/useFirestore";
 import Loading from '../components/Loading';
+import { formatDate } from '../utils/formatDate';
 
 const TournamentStats: React.FC = () => {
   const { id } = useParams();
@@ -79,8 +80,8 @@ const TournamentStats: React.FC = () => {
       <h1 className="text-3xl font-bold mb-6">Estadísticas del Torneo: {tournament.name}</h1>
 
       <div className="mb-6">
-        <p><strong>Fecha de inicio:</strong> {tournament.startDate?.toDate().toLocaleDateString() || ''}</p>
-        <p><strong>Fecha de fin:</strong> {tournament.endDate?.toDate().toLocaleDateString() || ''}</p>
+        <p><strong>Fecha de inicio:</strong>{formatDate(tournament.startDate)}</p>
+        <p><strong>Fecha de fin:</strong>{formatDate(tournament.endDate)}</p>
         <p><strong>Estatus:</strong> {tournament.active ? 'En curso' : 'Finalizado'}</p>
       </div>
 

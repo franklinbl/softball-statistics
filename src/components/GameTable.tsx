@@ -1,5 +1,6 @@
 import { useAuth } from "../hooks/useAuth";
 import { Game } from "../types/game";
+import { formatDate } from "../utils/formatDate";
 
 interface GameTableProps {
   games: Game[];
@@ -25,7 +26,7 @@ const GameTable: React.FC<GameTableProps> = ({games, openModalWithGameDetails, o
           games.map((game) => (
             <tr key={game.id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
               <td className="px-6 py-2">
-                {game.date ? game.date.toDate().toISOString().split('T')[0] : ''}
+                {formatDate(game.date)}
               </td>
               <td className="px-6 py-2">
                 {game.opponent}

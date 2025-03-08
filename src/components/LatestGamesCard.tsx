@@ -3,6 +3,7 @@ import { useFirestore } from "../hooks/useFirestore";
 import Modal from "./Modal";
 import { useState } from "react";
 import StatsTurnAtBatTable from "./StatsTurnAtBatTable";
+import { formatDate } from "../utils/formatDate";
 
 const LatestGamesCard: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -29,7 +30,7 @@ const LatestGamesCard: React.FC = () => {
   if (loading) {
     return (
       <>
-        <h2 className="text-2xl font-bold text-[#53A867] mb-4 text-left">Partidos anteriores</h2>
+        <h2 className="text-2xl font-bold text-[#53A867] text-left">Partidos anteriores</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 animate-pulse mb-4">
           {[1, 2, 3].map((_, index) => (
             <div
@@ -88,7 +89,7 @@ const LatestGamesCard: React.FC = () => {
               <p className="text-lg font-semibold">VS {game.opponent}</p>
               <p className="text-base text-[#8C939C]">Resultado: {(!game.runsHomeClub || !game.runsVisiting) ? 'Sin resultado' : (game.runsHomeClub + " - " + game.runsVisiting)}</p>
               <p className="text-sm text-[#8C939C]">
-                Fecha: {game.date ? game.date.toDate().toISOString().split('T')[0] : ''}
+                Fecha: {formatDate(game.date)}
               </p>
               <button className="mt-4 px-5 bg-[#37A63D] text-white py-2 rounded hover:bg-green-700 transition-colors" onClick={() => openModalWithGameDetails(game)}>
                 Ver detalles

@@ -4,8 +4,13 @@ import { Tournament } from '../types/tournament';
 import Modal from '../components/Modal';
 import TournamentsTable from '../components/TournamentsTable';
 import TournamentsForm from '../components/TournamentsForm';
+import { useAuth } from '../hooks/useAuth';
 
 const Tournaments: React.FC = () => {
+  const [isCreating, setIsCreating] = useState<boolean>(false);
+  const [editingTournament, setEditingTournament] = useState<Tournament | null>(null);
+  const {user} = useAuth();
+
   const { data: tournaments, addItem, updateItem } = useFirestore<Tournament>(
     'tournaments',
     [
@@ -21,8 +26,6 @@ const Tournaments: React.FC = () => {
     startDate: null,
     endDate: null,
   });
-  const [isCreating, setIsCreating] = useState<boolean>(false);
-  const [editingTournament, setEditingTournament] = useState<Tournament | null>(null);
 
   const openModal = (isCreating = true) => {
     if (isCreating) setTournament({name: '', active: true, startDate: null, endDate: null });
@@ -77,19 +80,20 @@ const Tournaments: React.FC = () => {
   };
 
   return (
-    <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-      <h1 className="text-3xl font-bold mb-6">Lista de Torneos</h1>
+    <div className="relative overflow-x-auto sm:rounded-lg text-left mt-20">
+      <div className='w-full flex justify-between'>
+        <h1 className="text-2xl font-bold text-[#53A867] mb-4 text-left">Lista de Torneos</h1>
 
-      <button
-        onClick={() => openModal()}
-        className="mb-6 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition-colors"
-      >
-        Crear Torneo
-      </button>
+        {user && <button
+          className="mb-6 rounded-xl bg-white border border-[#49a35c] text-[#49a35c] font-medium px-4 py-2 rounded hover:bg-[#49a35c] hover:text-white focus:outline-none focus:bg-[#49a35c] focus:text-white focus:border-[#49a35c] transition-colors"
+          onClick={() => openModal()}
+        >
+          Crear Torneo
+        </button>}
+      </div>
 
       <TournamentsTable
         tournaments={tournaments}
-        actionType="FUNCTION"
         onEdit={handleEditTournaments}
       />
 
