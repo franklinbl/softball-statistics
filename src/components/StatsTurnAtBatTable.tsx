@@ -69,7 +69,6 @@ const StatsTurnAtBatTable: React.FC<StatsTurnAtBatTableProps> = ({gameForStats, 
   useEffect(() => {
     const x = aggregatePlayerStats(gameForStats);
     setTournamentStats(x);
-    console.log(x);
   }, [gameForStats])
 
   // Function to sort the data
