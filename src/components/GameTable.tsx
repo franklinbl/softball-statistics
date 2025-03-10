@@ -12,38 +12,38 @@ const GameTable: React.FC<GameTableProps> = ({games, openModalWithGameDetails, o
   const {user} = useAuth();
 
   return (
-    <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-      <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+    <table className="w-full text-sm text-left rtl:text-right text-black bg-white border-collapse">
+      <thead className="text-xs uppercase">
         <tr>
-          <th scope="col" className="px-6 py-3">Fecha del juego</th>
-          <th scope="col" className="px-6 py-3">Oponente</th>
-          <th scope="col" className="px-6 py-3">Resultado</th>
-          <th scope="col" className="px-6 py-3 text-right">Detalles</th>
+          <th scope="col" className="py-3 border-b border-[#F0F1F3]">Fecha del juego</th>
+          <th scope="col" className="py-3 border-b border-[#F0F1F3]">Oponente</th>
+          <th scope="col" className="py-3 border-b border-[#F0F1F3]">Resultado</th>
+          <th scope="col" className="sr-only">Detalles</th>
         </tr>
       </thead>
       <tbody>
         {games.length > 0 ? (
           games.map((game) => (
-            <tr key={game.id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
-              <td className="px-6 py-2">
+            <tr key={game.id} className="bg-white border-b border-[#F0F1F3]  last:border-b-0">
+              <th className="py-4 font-medium text-black whitespace-nowrap">
                 {formatDate(game.date)}
-              </td>
-              <td className="px-6 py-2">
+              </th>
+              <td className="py-4">
                 {game.opponent}
               </td>
-              <td className="px-6 py-2">
+              <td className="py-4">
                 {game.runsHomeClub} - {game.runsVisiting}
               </td>
-              <td className="px-6 py-2 text-right">
+              <td className="py-4 text-right">
                 {user && <button
-                  className="font-medium text-blue-600 dark:text-blue-500 hover:underline cursor-pointer mr-5"
+                  className="font-medium text-[#CC5D03] hover:underline cursor-pointer mr-4"
                   onClick={() => onEdit(game)}
                 >
                   Editar
                 </button>}
 
                 <button
-                  className="font-medium text-blue-600 dark:text-blue-500 hover:underline cursor-pointer"
+                  className="font-medium text-[#CC5D03] hover:underline cursor-pointer mr-4"
                   onClick={() => openModalWithGameDetails(game)}
                 >
                   Ver detalles

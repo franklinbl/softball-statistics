@@ -9,6 +9,8 @@ import GameForm from "../components/GameForm";
 import { useFirestore } from "../hooks/useFirestore";
 import Loading from '../components/Loading';
 import { formatDate } from '../utils/formatDate';
+import CalendarIcon from '../../public/assets/svgs/CalendarIcon';
+import FlagIcon from '../../public/assets/svgs/FlahIcon';
 
 const TournamentStats: React.FC = () => {
   const { id } = useParams();
@@ -76,22 +78,65 @@ const TournamentStats: React.FC = () => {
   if (!tournament) return <p className="text-white">No se encontró el torneo.</p>;
 
   return (
-    <div className="p-8 text-white">
+    <div className="py-0">
       <h1 className="text-3xl font-bold mb-6">Estadísticas del Torneo: {tournament.name}</h1>
 
-      <div className="mb-6">
-        <p><strong>Fecha de inicio:</strong>{formatDate(tournament.startDate)}</p>
-        <p><strong>Fecha de fin:</strong>{formatDate(tournament.endDate)}</p>
-        <p><strong>Estatus:</strong> {tournament.active ? 'En curso' : 'Finalizado'}</p>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
+        <div
+          className="py-4 px-6 rounded-lg bg-[#F6FCF5] text-[#53A867] text-left"
+        >
+          <div className="flex items-center justify-start mb-4">
+            <div className="w-10 h-10 bg-[#ECF9EC] rounded-full flex items-center justify-center">
+              <CalendarIcon className="w-5 h-5" color="#00C846" />
+            </div>
+          </div>
+
+          <div className='mb-4'>
+            <p className="text-black text-xl font-bold">Fecha inicio</p>
+            <p className="text-md text-[#6C7381]">{formatDate(tournament.startDate)}</p>
+          </div>
+        </div>
+        <div
+          className="py-4 px-6 rounded-lg bg-[#F6FCF5] text-[#53A867] text-left"
+        >
+          <div className="flex items-center justify-start mb-4">
+            <div className="w-10 h-10 bg-[#ECF9EC] rounded-full flex items-center justify-center">
+              <CalendarIcon className="w-5 h-5" color="#00C846" />
+            </div>
+          </div>
+
+          <div className='mb-4'>
+            <p className="text-black text-xl font-bold">Fecha fin</p>
+            <p className="text-md text-[#6C7381]">{formatDate(tournament.endDate)}</p>
+          </div>
+        </div>
+        <div
+          className="py-4 px-6 rounded-lg bg-[#F6FCF5] text-[#53A867] text-left"
+        >
+          <div className="flex items-center justify-start mb-4">
+            <div className="w-10 h-10 bg-[#ECF9EC] rounded-full flex items-center justify-center">
+              <FlagIcon className="w-5 h-5" color="#00C846" />
+            </div>
+          </div>
+
+          <div className='mb-4'>
+            <p className="text-black text-xl font-bold">Estado</p>
+            <div className='mb-4'>
+              <p className="text-md text-[#6C7381]">{tournament.active ? 'En curso' : 'Finalizado'}</p>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <StatsTurnAtBatTable gameForStats={games} viewAVG={true}/>
+      <div className='mb-12'>
+        <StatsTurnAtBatTable gameForStats={games} viewAVG={true}/>
+      </div>
 
       <GameTable games={games} openModalWithGameDetails={openModalWithGameDetails} onEdit={openEditModal}/>
 
       <Modal isOpen={isModalOpen} onClose={closeModal} title={`Detalles del Juego contra ${selectedGame?.opponent || '-'}`}>
         {selectedGame && (
-          <StatsTurnAtBatTable gameForStats={[selectedGame]} viewAVG={false} />
+          <StatsTurnAtBatTable gameForStats={[selectedGame]} viewAVG={false}/>
         )}
       </Modal>
 

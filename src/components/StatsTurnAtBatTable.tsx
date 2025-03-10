@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { Game, TurnAtBat } from "../types/game";
+import SortIcon from "../../public/assets/svgs/SortIcon";
 
 interface StatsTurnAtBatTableProps {
   gameForStats: Game[];
@@ -69,6 +70,7 @@ const StatsTurnAtBatTable: React.FC<StatsTurnAtBatTableProps> = ({gameForStats, 
   useEffect(() => {
     const x = aggregatePlayerStats(gameForStats);
     setTournamentStats(x);
+    handleSort("AVG");
   }, [gameForStats])
 
   // Function to sort the data
@@ -101,218 +103,144 @@ const StatsTurnAtBatTable: React.FC<StatsTurnAtBatTableProps> = ({gameForStats, 
   }, [sortConfig]);
 
   return (
-    <div className='mb-10 overflow-x-hidden'>
-      {tournamentStats.length > 0 && (
-        <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-          <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+    <div className='min-w-4xl overflow-x-hidden'>
+    {tournamentStats.length > 0 && (
+        <table className="w-full text-sm text-left rtl:text-right text-black bg-white">
+          <thead className="text-xs uppercase">
               <tr>
                   <th
                     scope="col"
-                    className="px-6 py-3 cursor-pointer select-none"
+                    className="py-3 border-b border-[#F0F1F3] cursor-pointer  select-none relative group"
                     onClick={() => handleSort("playerName")}
                   >
                     <div className="flex items-center">
                       Nombre del jugador
-                      <svg className="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z"/>
-                      </svg>
+                      <SortIcon />
                     </div>
                   </th>
                   <th
                     scope="col"
-                    className="px-6 py-3 cursor-pointer select-none relative group"
+                    className="py-3 border-b border-[#F0F1F3] cursor-pointer select-none relative group"
                     onClick={() => handleSort("AB")}
                   >
                     <div className="flex items-center">
                       AB
-                      <svg
-                        className="w-4 h-4 ml-1"
-                        aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z" />
-                      </svg>
+                      <SortIcon />
                     </div>
                     {/* Tooltip */}
-                    <span className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-gray-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+                    <span className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 px-2 py-1 bg-gray-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap z-10">
                       Turnos al Bate (AB)
                     </span>
                   </th>
                   <th
                     scope="col"
-                    className="px-6 py-3 cursor-pointer select-none relative group"
+                    className="py-3 border-b border-[#F0F1F3] cursor-pointer select-none relative group"
                     onClick={() => handleSort("H")}
                   >
                     <div className="flex items-center">
                       H
-                      <svg
-                        className="w-4 h-4 ml-1"
-                        aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z" />
-                      </svg>
+                      <SortIcon />
                     </div>
                     {/* Tooltip */}
-                    <span className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-gray-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+                    <span className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 px-2 py-1 bg-gray-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap z-10">
                       Hits (H)
                     </span>
                   </th>
                   <th
                     scope="col"
-                    className="px-6 py-3 cursor-pointer select-none relative group"
+                    className="py-3 border-b border-[#F0F1F3] cursor-pointer  select-none relative group"
                     onClick={() => handleSort("2B")}
                   >
                     <div className="flex items-center">
                       2B
-                      <svg
-                        className="w-4 h-4 ml-1"
-                        aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z" />
-                      </svg>
+                      <SortIcon />
                     </div>
                     {/* Tooltip */}
-                    <span className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-gray-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+                    <span className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 px-2 py-1 bg-gray-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap z-10">
                       Dobles (2B)
                     </span>
                   </th>
                   <th
                     scope="col"
-                    className="px-6 py-3 cursor-pointer select-none relative group"
+                    className="py-3 border-b border-[#F0F1F3] cursor-pointer  select-none relative group"
                     onClick={() => handleSort("3B")}
                   >
                     <div className="flex items-center">
                       3B
-                      <svg
-                        className="w-4 h-4 ml-1"
-                        aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z" />
-                      </svg>
+                      <SortIcon />
                     </div>
                     {/* Tooltip */}
-                    <span className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-gray-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+                    <span className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 px-2 py-1 bg-gray-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap z-10">
                       Triples (3B)
                     </span>
                   </th>
                   <th
                     scope="col"
-                    className="px-6 py-3 cursor-pointer select-none relative group"
+                    className="py-3 border-b border-[#F0F1F3] cursor-pointer  select-none relative group"
                     onClick={() => handleSort("HR")}
                   >
                     <div className="flex items-center">
                       HR
-                      <svg
-                        className="w-4 h-4 ml-1"
-                        aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z" />
-                      </svg>
+                      <SortIcon />
                     </div>
                     {/* Tooltip */}
-                    <span className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-gray-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+                    <span className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 px-2 py-1 bg-gray-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap z-10">
                       Home Runs (HR)
                     </span>
                   </th>
                   <th
                     scope="col"
-                    className="px-6 py-3 cursor-pointer select-none relative group"
+                    className="py-3 border-b border-[#F0F1F3] cursor-pointer  select-none relative group"
                     onClick={() => handleSort("K")}
                   >
                     <div className="flex items-center">
                       K
-                      <svg
-                        className="w-4 h-4 ml-1"
-                        aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z" />
-                      </svg>
+                      <SortIcon />
                     </div>
                     {/* Tooltip */}
-                    <span className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-gray-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+                    <span className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 px-2 py-1 bg-gray-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap z-10">
                       Ponches (K)
                     </span>
                   </th>
                   <th
                     scope="col"
-                    className="px-6 py-3 cursor-pointer select-none relative group"
+                    className="py-3 border-b border-[#F0F1F3] cursor-pointer  select-none relative group"
                     onClick={() => handleSort("R")}
                   >
                     <div className="flex items-center">
                       R
-                      <svg
-                        className="w-4 h-4 ml-1"
-                        aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z" />
-                      </svg>
+                      <SortIcon />
                     </div>
                     {/* Tooltip */}
-                    <span className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-gray-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+                    <span className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 px-2 py-1 bg-gray-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap z-10">
                       Carreras Anotadas (R)
                     </span>
                   </th>
                   <th
                     scope="col"
-                    className="px-6 py-3 cursor-pointer select-none relative group"
+                    className="py-3 border-b border-[#F0F1F3] cursor-pointer  select-none relative group"
                     onClick={() => handleSort("RBI")}
                   >
                     <div className="flex items-center">
                       RBI
-                      <svg
-                        className="w-4 h-4 ml-1"
-                        aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z" />
-                      </svg>
+                      <SortIcon />
                     </div>
                     {/* Tooltip */}
-                    <span className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-gray-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+                    <span className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 px-2 py-1 bg-gray-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap z-10">
                       Carreras Impulsadas (RBI)
                     </span>
                   </th>
                   {viewAVG && <th
                     scope="col"
-                    className="px-6 py-3 cursor-pointer select-none relative group"
+                    className="py-3 border-b border-[#F0F1F3] cursor-pointer  select-none relative group"
                     onClick={() => handleSort("AVG")}
                   >
                     <div className="flex items-center">
                       AVG
-                      <svg
-                        className="w-4 h-4 ml-1"
-                        aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z" />
-                      </svg>
+                      <SortIcon />
                     </div>
                     {/* Tooltip */}
-                    <span className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-gray-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+                    <span className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 px-2 py-1 bg-gray-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap z-10">
                       Promedio de bateo (AVG)
                     </span>
                   </th>}
@@ -321,41 +249,41 @@ const StatsTurnAtBatTable: React.FC<StatsTurnAtBatTableProps> = ({gameForStats, 
           <tbody>
             {tournamentStats.length > 0 ? (
               tournamentStats.map((player) => (
-                <tr key={player?.player?.id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
-                    <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                <tr key={player?.player?.id} className="bg-white border-b border-[#F0F1F3]  last:border-b-0">
+                    <th scope="row" className="py-4 font-medium text-black whitespace-nowrap">
                       {player?.player?.name}
                     </th>
-                    <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    <td scope="row" className="py-4">
                       {player?.AB}
-                    </th>
-                    <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    </td>
+                    <td scope="row" className="py-4">
                       {player?.H}
-                    </th>
-                    <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    </td>
+                    <td scope="row" className="py-4">
                       {player?.['2B']}
-                    </th>
-                    <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    </td>
+                    <td scope="row" className="py-4">
                       {player?.['3B']}
-                    </th>
-                    <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    </td>
+                    <td scope="row" className="py-4">
                       {player?.HR}
-                    </th>
-                    <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    </td>
+                    <td scope="row" className="py-4">
                       {player?.K}
-                    </th>
-                    <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    </td>
+                    <td scope="row" className="py-4">
                       {player?.R}
-                    </th>
-                    <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    </td>
+                    <td scope="row" className="py-4">
                       {player?.RBI}
-                    </th>
-                    {viewAVG && <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    </td>
+                    {viewAVG && <td scope="row" className="py-4">
                       {player?.AVG}
-                    </th>}
+                    </td>}
                 </tr>
               ))
             ) : (
-              <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
+              <tr className="bg-white border-b border-[#F0F1F3]">
                   <td className="px-6 py-4 text-center" colSpan={viewAVG ? 9 : 8}>
                     No hay estadísticas disponibles.
                   </td>

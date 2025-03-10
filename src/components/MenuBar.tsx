@@ -31,7 +31,7 @@ const MenuBar: React.FC = () => {
       <div className="max-w-screen-xl mx-auto grid grid-cols-3 items-center">
         <div className="flex items-center space-x-3 rtl:space-x-reverse">
           <a className="flex items-center">
-            <img src="./src/assets/caimanes.png" className="h-20" alt="Flowbite Logo" />
+            <img src="/assets/caimanes.png" className="h-20" alt="Flowbite Logo" />
             <span className="self-center text-2xl font-semibold whitespace-nowrap text-black">Caimanes</span>
           </a>
         </div>
