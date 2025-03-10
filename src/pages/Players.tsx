@@ -68,7 +68,7 @@ const Players: React.FC = () => {
             onClick={() => openModal()}
             className="mb-6 rounded-xl bg-white border border-[#49a35c] text-[#49a35c] font-medium px-4 py-2 rounded hover:bg-[#49a35c] hover:text-white focus:outline-none focus:bg-[#49a35c] focus:text-white focus:border-[#49a35c] transition-colors"
           >
-            Crear Torneo
+            Crear Jugador
         </button>
       </div>
 

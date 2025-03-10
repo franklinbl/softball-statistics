@@ -128,47 +128,47 @@ const GameForm: React.FC<GameFormProps> = ({ onClose, initialData = null }) => {
 
   // Custom styles for react-select
   const darkThemeStyles: StylesConfig<OptionType, false, GroupBase<OptionType>> = {
-    // control: (base, state) => ({
-    //   ...base,
-    //   backgroundColor: "#1f2937",
-    //   borderColor: state.isFocused ? "#625FFF" : "#4b5563",
-    //   boxShadow: state.isFocused ? "0 0 0 1px #625FFF" : "none",
-    //   "&:hover": {
-    //     borderColor: "#625FFF",
-    //   },
-    // }),
-    // menu: (base) => ({
-    //   ...base,
-    //   backgroundColor: "#1f2937",
-    //   border: "1px solid #4b5563",
-    // }),
-    // option: (base, state) => ({
-    //   ...base,
-    //   backgroundColor: state.isSelected ? "#3b82f6" : state.isFocused ? "#374151" : "#1f2937",
-    //   color: state.isSelected ? "#ffffff" : "#d1d5db",
-    //   "&:hover": {
-    //     backgroundColor: "#374151",
-    //   },
-    // }),
-    // singleValue: (base) => ({
-    //   ...base,
-    //   color: "#d1d5db",
-    // }),
-    // placeholder: (base) => ({
-    //   ...base,
-    //   color: "#9ca3af",
-    // }),
-    // input: (base) => ({
-    //   ...base,
-    //   color: "#d1d5db",
-    // }),
-    // dropdownIndicator: (base) => ({
-    //   ...base,
-    //   color: "#9ca3af",
-    //   "&:hover": {
-    //     color: "#d1d5db",
-    //   },
-    // }),
+    control: (base, state) => ({
+      ...base,
+      backgroundColor: "transparent",
+      borderColor: state.isFocused ? "#625FFF" : "#4b5563",
+      boxShadow: state.isFocused ? "0 0 0 1px #625FFF" : "none",
+      "&:hover": {
+        borderColor: "#625FFF",
+      },
+    }),
+    menu: (base) => ({
+      ...base,
+      backgroundColor: "white",
+      border: "1px solid white",
+    }),
+    option: (base, state) => ({
+      ...base,
+      backgroundColor: state.isSelected ? "white" : state.isFocused ? "white" : "#ededed",
+      color: "black",
+      "&:hover": {
+        backgroundColor: "white",
+      },
+    }),
+    singleValue: (base) => ({
+      ...base,
+      color: "black",
+    }),
+    placeholder: (base) => ({
+      ...base,
+      color: "black",
+    }),
+    input: (base) => ({
+      ...base,
+      color: "black",
+    }),
+    dropdownIndicator: (base) => ({
+      ...base,
+      color: "black",
+      "&:hover": {
+        color: "black",
+      },
+    }),
   };
 
   return (
@@ -271,12 +271,12 @@ const GameForm: React.FC<GameFormProps> = ({ onClose, initialData = null }) => {
         </div>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-8">
         <h2 className="text-lg font-semibold">Turnos al Bate</h2>
         {formData.turnsAtBat.map((turn, index) => (
-          <div key={index} className="border p-4 rounded-md bg-[]">
+          <div key={index} className="p-4 rounded-md bg-[#eff7f2]">
             <div className="mb-4">
-              <label htmlFor={`player-${index}`} className="block text-sm font-medium">
+              <label htmlFor={`player-${index}`} className="block text-xl font-medium">
                 Jugador
               </label>
               <Select<OptionType, false>
@@ -426,7 +426,7 @@ const GameForm: React.FC<GameFormProps> = ({ onClose, initialData = null }) => {
             <button
               type="button"
               onClick={() => removePlayer(index)}
-              className="mt-4 bg-red-600 px-4 py-2 rounded hover:bg-red-700 transition-colors"
+              className="mt-4 text-white bg-[#d85858] px-4 py-2 rounded hover:bg-red-700 transition-colors"
             >
               Eliminar jugador
             </button>
@@ -437,7 +437,7 @@ const GameForm: React.FC<GameFormProps> = ({ onClose, initialData = null }) => {
       <div className="flex gap-5">
         <button
           type="submit"
-          className="w-full px-4 py-2 rounded border transition-colors"
+          className="w-full px-4 py-2 rounded border transition-colors bg-[#53A867] hover:bg-[#49935b] text-white"
         >
           {!loading ?
             (initialData ? "Actualizar datos" : "Guardar Datos") :
@@ -448,7 +448,7 @@ const GameForm: React.FC<GameFormProps> = ({ onClose, initialData = null }) => {
         <button
           type="button"
           onClick={addPlayer}
-          className="w-full px-4 py-2 rounded border transition-colors"
+          className="w-full px-4 py-2 rounded border transition-colors bg-[#D2783E] hover:bg-[#bf6c39] text-white"
         >
           Agregar jugador
         </button>

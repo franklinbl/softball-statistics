@@ -19,7 +19,7 @@ const PlayerForm: React.FC<PlayerFormProps> = ({
   return (
     <form onSubmit={onSubmit} className="space-y-4">
       <div>
-        <label htmlFor="name" className="block text-xl font-medium">
+        <label htmlFor="name" className="block text-md font-medium">
           Nombre del jugador
         </label>
         <input
@@ -52,9 +52,7 @@ const PlayerForm: React.FC<PlayerFormProps> = ({
       <button
         type="submit"
         disabled={isCreating}
-        className={`w-full ${
-          isCreating ? 'bg-gray-400 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700'
-        } text-white px-4 py-2 rounded transition-colors`}
+        className={`w-full bg-[#37A63D] hover:bg-[#339638] ${isCreating && 'cursor-not-allowed'} text-white px-4 py-2 rounded transition-colors`}
       >
         {isCreating ? (
           <LoadingIcon />

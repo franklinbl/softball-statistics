@@ -19,7 +19,7 @@ const TournamentsForm: React.FC<TournamentFormProps> = ({
   return (
     <form onSubmit={onSubmit} className="space-y-4">
       <div>
-        <label htmlFor="name" className="block text-xl font-medium">
+        <label htmlFor="name" className="block text-md font-medium">
           Nombre del torneo
         </label>
         <input
@@ -36,7 +36,7 @@ const TournamentsForm: React.FC<TournamentFormProps> = ({
       </div>
 
       <div>
-        <label htmlFor="startDate" className="block text-xl font-medium">
+        <label htmlFor="startDate" className="block text-md font-medium">
           Fecha de inicio del torneo
         </label>
         <input
@@ -55,7 +55,7 @@ const TournamentsForm: React.FC<TournamentFormProps> = ({
       </div>
 
       <div>
-        <label htmlFor="endDate" className="block text-xl font-medium">
+        <label htmlFor="endDate" className="block text-md font-medium">
           Fecha de fin del torneo
         </label>
         <input
@@ -75,7 +75,7 @@ const TournamentsForm: React.FC<TournamentFormProps> = ({
 
       <div>
         <label className="flex items-center space-x-2">
-          <span className="">Torneo activo</span>
+          <span className="text-md">Torneo activo</span>
           <input
             type="checkbox"
             checked={tournament.active}
@@ -90,9 +90,7 @@ const TournamentsForm: React.FC<TournamentFormProps> = ({
       <button
         type="submit"
         disabled={isCreating}
-        className={`w-full ${
-          isCreating ? 'bg-gray-400 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700'
-        } text-white px-4 py-2 rounded transition-colors`}
+        className={`w-full bg-[#37A63D] hover:bg-[#339638] ${isCreating && 'cursor-not-allowed'} text-white px-4 py-2 rounded transition-colors`}
       >
         {isCreating ? (
           <svg
