@@ -5,9 +5,13 @@ import { useState } from "react";
 import StatsTurnAtBatTable from "./StatsTurnAtBatTable";
 import { formatDate } from "../utils/formatDate";
 import CalendarIcon from "../../public/assets/svgs/CalendarIcon";
+import { useAuth } from "../hooks/useAuth";
+import GameForm from "./GameForm";
 
 const LatestGamesCard: React.FC = () => {
+  const {user} = useAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpenAddGame, setIsModalOpenAddGame] = useState(false);
   const [selectedGame, setSelectedGame] = useState<Game | null>(null);
 
   const { data: games, loading, error } = useFirestore<Game>(
@@ -19,8 +23,11 @@ const LatestGamesCard: React.FC = () => {
     setIsModalOpen(true);
   };
 
+  const openModalAddGame = () => setIsModalOpenAddGame(true);
+
   const closeModal = () => {
     setIsModalOpen(false);
+    setIsModalOpenAddGame(false);
     setSelectedGame(null);
   };
 
@@ -31,7 +38,9 @@ const LatestGamesCard: React.FC = () => {
   if (loading) {
     return (
       <>
-        <h2 className="text-2xl font-bold text-[#53A867] text-left">Partidos anteriores</h2>
+        <div className="w-full flex items-center justify-between mb-4 py-4">
+          <h2 className="text-2xl font-bold text-[#53A867] text-left">Partidos anteriores</h2>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 animate-pulse mb-4">
           {[1, 2, 3].map((_, index) => (
             <div
@@ -57,7 +66,15 @@ const LatestGamesCard: React.FC = () => {
 
   return (
     <>
-      <h2 className="text-2xl font-bold text-[#53A867] mb-4 text-left">Partidos anteriores</h2>
+      <div className="w-full flex items-center justify-between mb-4 py-4">
+        <h2 className="text-2xl font-bold text-[#53A867] text-left">Partidos anteriores</h2>
+
+        {user && <button
+          className="rounded-xl bg-white border border-[#49a35c] text-[#49a35c] font-medium px-4 py-2 rounded hover:bg-[#49a35c] hover:text-white focus:outline-none focus:bg-[#49a35c] focus:text-white focus:border-[#49a35c] transition-colors"
+          onClick={openModalAddGame}>
+          Agregar datos de juego
+        </button>}
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
         {games.map((game, index) => (
           <div
@@ -89,6 +106,10 @@ const LatestGamesCard: React.FC = () => {
         {selectedGame && (
           <StatsTurnAtBatTable gameForStats={[selectedGame]} viewAVG={false} />
         )}
+      </Modal>
+
+      <Modal isOpen={isModalOpenAddGame} onClose={closeModal} title="Agregar Datos de Juego" >
+        <GameForm onClose={closeModal}/>
       </Modal>
     </>
   );
