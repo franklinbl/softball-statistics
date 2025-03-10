@@ -128,54 +128,54 @@ const GameForm: React.FC<GameFormProps> = ({ onClose, initialData = null }) => {
 
   // Custom styles for react-select
   const darkThemeStyles: StylesConfig<OptionType, false, GroupBase<OptionType>> = {
-    control: (base, state) => ({
-      ...base,
-      backgroundColor: "#1f2937",
-      borderColor: state.isFocused ? "#625FFF" : "#4b5563",
-      boxShadow: state.isFocused ? "0 0 0 1px #625FFF" : "none",
-      "&:hover": {
-        borderColor: "#625FFF",
-      },
-    }),
-    menu: (base) => ({
-      ...base,
-      backgroundColor: "#1f2937",
-      border: "1px solid #4b5563",
-    }),
-    option: (base, state) => ({
-      ...base,
-      backgroundColor: state.isSelected ? "#3b82f6" : state.isFocused ? "#374151" : "#1f2937",
-      color: state.isSelected ? "#ffffff" : "#d1d5db",
-      "&:hover": {
-        backgroundColor: "#374151",
-      },
-    }),
-    singleValue: (base) => ({
-      ...base,
-      color: "#d1d5db",
-    }),
-    placeholder: (base) => ({
-      ...base,
-      color: "#9ca3af",
-    }),
-    input: (base) => ({
-      ...base,
-      color: "#d1d5db",
-    }),
-    dropdownIndicator: (base) => ({
-      ...base,
-      color: "#9ca3af",
-      "&:hover": {
-        color: "#d1d5db",
-      },
-    }),
+    // control: (base, state) => ({
+    //   ...base,
+    //   backgroundColor: "#1f2937",
+    //   borderColor: state.isFocused ? "#625FFF" : "#4b5563",
+    //   boxShadow: state.isFocused ? "0 0 0 1px #625FFF" : "none",
+    //   "&:hover": {
+    //     borderColor: "#625FFF",
+    //   },
+    // }),
+    // menu: (base) => ({
+    //   ...base,
+    //   backgroundColor: "#1f2937",
+    //   border: "1px solid #4b5563",
+    // }),
+    // option: (base, state) => ({
+    //   ...base,
+    //   backgroundColor: state.isSelected ? "#3b82f6" : state.isFocused ? "#374151" : "#1f2937",
+    //   color: state.isSelected ? "#ffffff" : "#d1d5db",
+    //   "&:hover": {
+    //     backgroundColor: "#374151",
+    //   },
+    // }),
+    // singleValue: (base) => ({
+    //   ...base,
+    //   color: "#d1d5db",
+    // }),
+    // placeholder: (base) => ({
+    //   ...base,
+    //   color: "#9ca3af",
+    // }),
+    // input: (base) => ({
+    //   ...base,
+    //   color: "#d1d5db",
+    // }),
+    // dropdownIndicator: (base) => ({
+    //   ...base,
+    //   color: "#9ca3af",
+    //   "&:hover": {
+    //     color: "#d1d5db",
+    //   },
+    // }),
   };
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label htmlFor="date" className="block text-sm font-medium text-gray-300">
+          <label htmlFor="date" className="block text-sm font-medium">
           Fecha del juego
           </label>
           <input
@@ -188,13 +188,13 @@ const GameForm: React.FC<GameFormProps> = ({ onClose, initialData = null }) => {
                 date: e.target.value ? Timestamp.fromDate(new Date(e.target.value)) : null
               })
             }
-            className="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-gray-700 text-white"
+            className="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             required
           />
         </div>
 
         <div>
-          <label htmlFor="tournament" className="block text-sm font-medium text-gray-300">
+          <label htmlFor="tournament" className="block text-sm font-medium">
             Torneo
           </label>
           <Select
@@ -221,7 +221,7 @@ const GameForm: React.FC<GameFormProps> = ({ onClose, initialData = null }) => {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div>
-          <label className="block text-sm font-medium text-gray-300">
+          <label className="block text-sm font-medium">
             Nombre del oponente
           </label>
           <input
@@ -231,13 +231,13 @@ const GameForm: React.FC<GameFormProps> = ({ onClose, initialData = null }) => {
             onChange={(e) =>
               setFormData({...formData, opponent: e.target.value})
             }
-            className="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-gray-700 text-white"
+            className="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             required
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-300">
+          <label className="block text-sm font-medium">
             Carreras de Caimanes
           </label>
           <input
@@ -247,14 +247,14 @@ const GameForm: React.FC<GameFormProps> = ({ onClose, initialData = null }) => {
             onChange={(e) =>
               setFormData({...formData, runsHomeClub: Number(e.target.value)})
             }
-            className="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-gray-700 text-white"
+            className="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             required
             onWheel={(e) => e.currentTarget.blur()}
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-300">
+          <label className="block text-sm font-medium">
             Carreras del oponente
           </label>
           <input
@@ -264,7 +264,7 @@ const GameForm: React.FC<GameFormProps> = ({ onClose, initialData = null }) => {
             onChange={(e) =>
               setFormData({...formData, runsVisiting: Number(e.target.value)})
             }
-            className="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-gray-700 text-white"
+            className="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             required
             onWheel={(e) => e.currentTarget.blur()}
           />
@@ -272,11 +272,11 @@ const GameForm: React.FC<GameFormProps> = ({ onClose, initialData = null }) => {
       </div>
 
       <div className="space-y-4">
-        <h2 className="text-lg font-semibold text-gray-300">Turnos al Bate</h2>
+        <h2 className="text-lg font-semibold">Turnos al Bate</h2>
         {formData.turnsAtBat.map((turn, index) => (
-          <div key={index} className="border p-4 rounded-md bg-gray-800">
+          <div key={index} className="border p-4 rounded-md bg-[]">
             <div className="mb-4">
-              <label htmlFor={`player-${index}`} className="block text-sm font-medium text-gray-300">
+              <label htmlFor={`player-${index}`} className="block text-sm font-medium">
                 Jugador
               </label>
               <Select<OptionType, false>
@@ -302,7 +302,7 @@ const GameForm: React.FC<GameFormProps> = ({ onClose, initialData = null }) => {
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <div>
-                <label htmlFor={`AB-${index}`} className="block text-sm font-medium text-gray-300">
+                <label htmlFor={`AB-${index}`} className="block text-sm font-medium">
                   Turnos al Bate (AB)
                 </label>
                 <input
@@ -310,14 +310,14 @@ const GameForm: React.FC<GameFormProps> = ({ onClose, initialData = null }) => {
                   id={`AB-${index}`}
                   value={turn.AB}
                   onChange={(e) => handleStatChange(index, 'AB', Number(e.target.value))}
-                  className="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-gray-700 text-white"
+                  className="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                   placeholder="0"
                   required
                   onWheel={(e) => e.currentTarget.blur()}
                 />
               </div>
               <div>
-                <label htmlFor={`H-${index}`} className="block text-sm font-medium text-gray-300">
+                <label htmlFor={`H-${index}`} className="block text-sm font-medium">
                   Hits (H)
                 </label>
                 <input
@@ -325,14 +325,14 @@ const GameForm: React.FC<GameFormProps> = ({ onClose, initialData = null }) => {
                   id={`H-${index}`}
                   value={turn.H}
                   onChange={(e) => handleStatChange(index, 'H', Number(e.target.value))}
-                  className="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-gray-700 text-white"
+                  className="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                   placeholder="0"
                   required
                   onWheel={(e) => e.currentTarget.blur()}
                 />
               </div>
               <div>
-                <label htmlFor={`2B-${index}`} className="block text-sm font-medium text-gray-300">
+                <label htmlFor={`2B-${index}`} className="block text-sm font-medium">
                   Dobles (2B)
                 </label>
                 <input
@@ -340,14 +340,14 @@ const GameForm: React.FC<GameFormProps> = ({ onClose, initialData = null }) => {
                   id={`2B-${index}`}
                   value={turn['2B']}
                   onChange={(e) => handleStatChange(index, '2B', Number(e.target.value))}
-                  className="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-gray-700 text-white"
+                  className="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                   placeholder="0"
                   required
                   onWheel={(e) => e.currentTarget.blur()}
                 />
               </div>
               <div>
-                <label htmlFor={`3B-${index}`} className="block text-sm font-medium text-gray-300">
+                <label htmlFor={`3B-${index}`} className="block text-sm font-medium">
                   Triples (3B)
                 </label>
                 <input
@@ -355,14 +355,14 @@ const GameForm: React.FC<GameFormProps> = ({ onClose, initialData = null }) => {
                   id={`3B-${index}`}
                   value={turn['3B']}
                   onChange={(e) => handleStatChange(index, '3B', Number(e.target.value))}
-                  className="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-gray-700 text-white"
+                  className="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                   placeholder="0"
                   required
                   onWheel={(e) => e.currentTarget.blur()}
                 />
               </div>
               <div>
-                <label htmlFor={`HR-${index}`} className="block text-sm font-medium text-gray-300">
+                <label htmlFor={`HR-${index}`} className="block text-sm font-medium">
                   Home Runs (HR)
                 </label>
                 <input
@@ -370,14 +370,14 @@ const GameForm: React.FC<GameFormProps> = ({ onClose, initialData = null }) => {
                   id={`HR-${index}`}
                   value={turn.HR}
                   onChange={(e) => handleStatChange(index, 'HR', Number(e.target.value))}
-                  className="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-gray-700 text-white"
+                  className="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                   placeholder="0"
                   required
                   onWheel={(e) => e.currentTarget.blur()}
                 />
               </div>
               <div>
-                <label htmlFor={`K-${index}`} className="block text-sm font-medium text-gray-300">
+                <label htmlFor={`K-${index}`} className="block text-sm font-medium">
                   Ponches (K)
                 </label>
                 <input
@@ -385,14 +385,14 @@ const GameForm: React.FC<GameFormProps> = ({ onClose, initialData = null }) => {
                   id={`K-${index}`}
                   value={turn.K}
                   onChange={(e) => handleStatChange(index, 'K', Number(e.target.value))}
-                  className="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-gray-700 text-white"
+                  className="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                   placeholder="0"
                   required
                   onWheel={(e) => e.currentTarget.blur()}
                 />
               </div>
               <div>
-                <label htmlFor={`R-${index}`} className="block text-sm font-medium text-gray-300">
+                <label htmlFor={`R-${index}`} className="block text-sm font-medium">
                   Carreras Anotadas (R)
                 </label>
                 <input
@@ -400,14 +400,14 @@ const GameForm: React.FC<GameFormProps> = ({ onClose, initialData = null }) => {
                   id={`R-${index}`}
                   value={turn.R}
                   onChange={(e) => handleStatChange(index, 'R', Number(e.target.value))}
-                  className="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-gray-700 text-white"
+                  className="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                   placeholder="0"
                   required
                   onWheel={(e) => e.currentTarget.blur()}
                 />
               </div>
               <div>
-                <label htmlFor={`RBI-${index}`} className="block text-sm font-medium text-gray-300">
+                <label htmlFor={`RBI-${index}`} className="block text-sm font-medium">
                   Carreras Impulsadas (RBI)
                 </label>
                 <input
@@ -415,7 +415,7 @@ const GameForm: React.FC<GameFormProps> = ({ onClose, initialData = null }) => {
                   id={`RBI-${index}`}
                   value={turn.RBI}
                   onChange={(e) => handleStatChange(index, 'RBI', Number(e.target.value))}
-                  className="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-gray-700 text-white"
+                  className="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                   placeholder="0"
                   required
                   onWheel={(e) => e.currentTarget.blur()}
@@ -426,31 +426,34 @@ const GameForm: React.FC<GameFormProps> = ({ onClose, initialData = null }) => {
             <button
               type="button"
               onClick={() => removePlayer(index)}
-              className="mt-4 bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition-colors"
+              className="mt-4 bg-red-600 px-4 py-2 rounded hover:bg-red-700 transition-colors"
             >
               Eliminar jugador
             </button>
           </div>
         ))}
+      </div>
+
+      <div className="flex gap-5">
+        <button
+          type="submit"
+          className="w-full px-4 py-2 rounded border transition-colors"
+        >
+          {!loading ?
+            (initialData ? "Actualizar datos" : "Guardar Datos") :
+            <LoadingIcon />
+            }
+        </button>
 
         <button
           type="button"
           onClick={addPlayer}
-          className="w-full bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors"
+          className="w-full px-4 py-2 rounded border transition-colors"
         >
           Agregar jugador
         </button>
       </div>
 
-      <button
-        type="submit"
-        className="w-full bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors"
-      >
-        {!loading ?
-          (initialData ? "Actualizar datos" : "Guardar Datos") :
-          <LoadingIcon />
-          }
-      </button>
     </form>
 );
 };

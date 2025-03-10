@@ -13,10 +13,10 @@ const TournamentsTable: React.FC<TournamentsTableProps> = ({ tournaments, onEdit
 
   return (
     <div className="relative overflow-x-auto sm:rounded-lg mb-10">
-      <table className="w-full text-sm text-left rtl:text-right text-black bg-white border-collapse">
+      <table className="w-full text-sm text-left rtl:text-right text-black bg-[#FEF3EA] border-collapse">
         <thead className="text-xs uppercase">
           <tr>
-            <th scope="col" className="py-3 border-b border-[#F0F1F3]">
+            <th scope="col" className="pl-4 py-3 border-b border-[#F0F1F3]">
               Nombre del torneo
             </th>
             <th scope="col" className="py-3 border-b border-[#F0F1F3]">
@@ -39,7 +39,7 @@ const TournamentsTable: React.FC<TournamentsTableProps> = ({ tournaments, onEdit
               <tr key={tournament.id} className="bg-white border-b border-[#F0F1F3]  last:border-b-0">
                 <th
                   scope="row"
-                  className="py-4 font-medium text-black whitespace-nowrap"
+                  className="pl-4 py-4 font-medium text-black whitespace-nowrap"
                 >
                   {tournament.name}
                 </th>
@@ -52,7 +52,7 @@ const TournamentsTable: React.FC<TournamentsTableProps> = ({ tournaments, onEdit
                 <td className="py-4">
                   {tournament.active ? 'Activo' : 'Finalizado'}
                 </td>
-                <td className="py-4 text-right">
+                <td className="pr-4 py-4 text-right">
                   {user && (
                     <a onClick={() => onEdit(tournament)} className="font-medium text-[#CC5D03] hover:underline cursor-pointer mr-4">
                       Editar

@@ -79,7 +79,7 @@ const TournamentStats: React.FC = () => {
 
   return (
     <div className="py-0">
-      <h1 className="text-3xl font-bold mb-6">Estadísticas del Torneo: {tournament.name}</h1>
+      <h1 className="text-4xl font-bold mb-6">Torneo {tournament.name}</h1>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
         <div
@@ -129,14 +129,38 @@ const TournamentStats: React.FC = () => {
       </div>
 
       <div className='mb-12'>
+        <h3 className='text-3xl font-bold mb-2'>Estadísticas</h3>
         <StatsTurnAtBatTable gameForStats={games} viewAVG={true}/>
       </div>
 
-      <GameTable games={games} openModalWithGameDetails={openModalWithGameDetails} onEdit={openEditModal}/>
+      <div>
+        <h3 className='text-3xl font-bold mb-2'>Juegos</h3>
+        <GameTable games={games} openModalWithGameDetails={openModalWithGameDetails} onEdit={openEditModal}/>
+      </div>
 
-      <Modal isOpen={isModalOpen} onClose={closeModal} title={`Detalles del Juego contra ${selectedGame?.opponent || '-'}`}>
+      <Modal isOpen={isModalOpen} onClose={closeModal} title={`Detalles del Juego VS ${selectedGame?.opponent || '-'}`}>
         {selectedGame && (
-          <StatsTurnAtBatTable gameForStats={[selectedGame]} viewAVG={false}/>
+          <>
+            <div className='mb-5'>
+              <p className='text-md'>
+                {formatDate(selectedGame.date)} · Resultado final
+                {selectedGame.runsHomeClub === selectedGame.runsVisiting ? (
+                  <span className="ml-3 bg-yellow-100 text-yellow-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm">
+                    {selectedGame.runsHomeClub} - {selectedGame.runsVisiting}
+                  </span>
+                ) : selectedGame.runsHomeClub > selectedGame.runsVisiting ? (
+                  <span className="ml-3 bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm">
+                    {selectedGame.runsHomeClub} - {selectedGame.runsVisiting}
+                  </span>
+                ) : (
+                  <span className="ml-3 bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm">
+                    {selectedGame.runsHomeClub} - {selectedGame.runsVisiting}
+                  </span>
+                )}
+              </p>
+            </div>
+            <StatsTurnAtBatTable gameForStats={[selectedGame]} viewAVG={false}/>
+          </>
         )}
       </Modal>
 

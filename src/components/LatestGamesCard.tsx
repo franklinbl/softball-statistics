@@ -75,6 +75,7 @@ const LatestGamesCard: React.FC = () => {
           Agregar datos de juego
         </button>}
       </div>
+
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
         {games.map((game, index) => (
           <div
@@ -102,7 +103,7 @@ const LatestGamesCard: React.FC = () => {
         ))}
       </div>
 
-      <Modal isOpen={isModalOpen} onClose={closeModal} title={`Detalles del Juego contra ${selectedGame?.opponent || '-'}`}>
+      <Modal isOpen={isModalOpen} onClose={closeModal} title={`Detalles del Juego VS ${selectedGame?.opponent || '-'}`}>
         {selectedGame && (
           <StatsTurnAtBatTable gameForStats={[selectedGame]} viewAVG={false} />
         )}

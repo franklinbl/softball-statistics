@@ -80,7 +80,7 @@ const Tournaments: React.FC = () => {
   };
 
   return (
-    <div className="relative overflow-x-auto sm:rounded-lg text-left mt-20">
+    <div className="relative sm:rounded-lg text-left mt-20">
       <div className='w-full flex justify-between'>
         <h1 className="text-2xl font-bold text-[#53A867] mb-4 text-left">Lista de Torneos</h1>
 

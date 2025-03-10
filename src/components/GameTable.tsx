@@ -12,10 +12,10 @@ const GameTable: React.FC<GameTableProps> = ({games, openModalWithGameDetails, o
   const {user} = useAuth();
 
   return (
-    <table className="w-full text-sm text-left rtl:text-right text-black bg-white border-collapse">
+    <table className="w-full text-sm text-left rtl:text-right text-black bg-[#F6FCF5] border-collapse">
       <thead className="text-xs uppercase">
         <tr>
-          <th scope="col" className="py-3 border-b border-[#F0F1F3]">Fecha del juego</th>
+          <th scope="col" className="pl-4 py-3 border-b border-[#F0F1F3]">Fecha del juego</th>
           <th scope="col" className="py-3 border-b border-[#F0F1F3]">Oponente</th>
           <th scope="col" className="py-3 border-b border-[#F0F1F3]">Resultado</th>
           <th scope="col" className="sr-only">Detalles</th>
@@ -25,14 +25,28 @@ const GameTable: React.FC<GameTableProps> = ({games, openModalWithGameDetails, o
         {games.length > 0 ? (
           games.map((game) => (
             <tr key={game.id} className="bg-white border-b border-[#F0F1F3]  last:border-b-0">
-              <th className="py-4 font-medium text-black whitespace-nowrap">
+              <th className="pl-4 py-4 font-medium text-black whitespace-nowrap">
                 {formatDate(game.date)}
               </th>
               <td className="py-4">
                 {game.opponent}
               </td>
               <td className="py-4">
-                {game.runsHomeClub} - {game.runsVisiting}
+              <p className='text-md'>
+                {game.runsHomeClub === game.runsVisiting ? (
+                  <span className="ml-3 bg-yellow-100 text-yellow-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm">
+                    {game.runsHomeClub} - {game.runsVisiting}
+                  </span>
+                ) : game.runsHomeClub > game.runsVisiting ? (
+                  <span className="ml-3 bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm">
+                    {game.runsHomeClub} - {game.runsVisiting}
+                  </span>
+                ) : (
+                  <span className="ml-3 bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm">
+                    {game.runsHomeClub} - {game.runsVisiting}
+                  </span>
+                )}
+              </p>
               </td>
               <td className="py-4 text-right">
                 {user && <button

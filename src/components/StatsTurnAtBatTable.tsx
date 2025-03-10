@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Game, TurnAtBat } from "../types/game";
 import SortIcon from "../../public/assets/svgs/SortIcon";
+import { aggregatePlayerStats } from "../utils/calculateStatsTeam";
 
 interface StatsTurnAtBatTableProps {
   gameForStats: Game[];
@@ -12,51 +13,6 @@ const StatsTurnAtBatTable: React.FC<StatsTurnAtBatTableProps> = ({gameForStats, 
 
   // State to handle sorting
   const [sortConfig, setSortConfig] = useState<{ key: keyof TurnAtBat | "playerName"; direction: "asc" | "desc" } | null>(null);
-
-  const aggregatePlayerStats = (games: Game[]) => {
-    const playerStatsMap: Map<string, TurnAtBat> = new Map();
-
-    games.forEach((game) => {
-      game.turnsAtBat.forEach((turn) => {
-        const { player, AB, H, '2B': doubles, '3B': triples, HR, K, R, RBI } = turn;
-
-        // If the player already exists in the map, update their stats
-        if (playerStatsMap.has(player?.id || '')) {
-          const existingStats = playerStatsMap.get(player?.id || '')!;
-          existingStats.AB += AB;
-          existingStats.H += H;
-          existingStats['2B'] += doubles;
-          existingStats['3B'] += triples;
-          existingStats.HR += HR;
-          existingStats.K += K;
-          existingStats.R += R;
-          existingStats.RBI += RBI;
-          existingStats.AVG =
-            existingStats.AB > 0
-              ? ((existingStats.H + existingStats['2B'] + existingStats['3B'] + existingStats.HR) / existingStats.AB).toFixed(3)
-              : '0.000';
-        } else {
-          // If the player does not exist in the map, create a new entry
-          const newStats: TurnAtBat = {
-            player: { id: player?.id || '', name: player?.name || '' },
-            AB,
-            H,
-            '2B': doubles,
-            '3B': triples,
-            HR,
-            K,
-            R,
-            RBI,
-            AVG: AB > 0 ? ((H + doubles + triples + HR) / AB).toFixed(3) : '0.000',
-          };
-          playerStatsMap.set(player?.id || '', newStats);
-        }
-      });
-    });
-
-    // Convert the map into an array
-    return Array.from(playerStatsMap.values());
-  };
 
   // Function to handle sorting
   const handleSort = (key: keyof TurnAtBat | "playerName") => {
@@ -105,12 +61,12 @@ const StatsTurnAtBatTable: React.FC<StatsTurnAtBatTableProps> = ({gameForStats, 
   return (
     <div className='min-w-4xl overflow-x-hidden'>
     {tournamentStats.length > 0 && (
-        <table className="w-full text-sm text-left rtl:text-right text-black bg-white">
+        <table className="w-full text-sm text-left rtl:text-right text-black bg-[#FEF3EA]">
           <thead className="text-xs uppercase">
               <tr>
                   <th
                     scope="col"
-                    className="py-3 border-b border-[#F0F1F3] cursor-pointer  select-none relative group"
+                    className="pl-4 py-3 border-b border-[#F0F1F3] cursor-pointer  select-none relative group"
                     onClick={() => handleSort("playerName")}
                   >
                     <div className="flex items-center">
@@ -250,7 +206,7 @@ const StatsTurnAtBatTable: React.FC<StatsTurnAtBatTableProps> = ({gameForStats, 
             {tournamentStats.length > 0 ? (
               tournamentStats.map((player) => (
                 <tr key={player?.player?.id} className="bg-white border-b border-[#F0F1F3]  last:border-b-0">
-                    <th scope="row" className="py-4 font-medium text-black whitespace-nowrap">
+                    <th scope="row" className="pl-4 py-4 font-medium text-black whitespace-nowrap">
                       {player?.player?.name}
                     </th>
                     <td scope="row" className="py-4">

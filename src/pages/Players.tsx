@@ -61,15 +61,16 @@ const Players: React.FC = () => {
   if (error) return <p className="text-center text-red-500">{error}</p>;
 
   return (
-    <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-10">
-      <h1 className="text-3xl font-bold mb-6">Lista de Jugadores</h1>
-
-      <button
-        onClick={() => openModal()}
-        className="mb-6 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition-colors"
-      >
-        Crear Jugador
-      </button>
+    <div className="relative sm:rounded-lg mt-10">
+      <div className="flex justify-between items-center">
+        <h1 className="text-2xl font-bold text-[#53A867] mb-4 text-left">Lista de Jugadores</h1>
+        <button
+            onClick={() => openModal()}
+            className="mb-6 rounded-xl bg-white border border-[#49a35c] text-[#49a35c] font-medium px-4 py-2 rounded hover:bg-[#49a35c] hover:text-white focus:outline-none focus:bg-[#49a35c] focus:text-white focus:border-[#49a35c] transition-colors"
+          >
+            Crear Torneo
+        </button>
+      </div>
 
       <PlayersTable players={players} onEdit={handleEditPlayer} />
 
