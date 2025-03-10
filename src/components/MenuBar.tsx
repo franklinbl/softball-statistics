@@ -22,7 +22,6 @@ const MenuBar: React.FC = () => {
   // Definition of menu items
   const menuItems = [
     { path: "/", label: "Home" },
-    { path: "/statistics", label: "Estadísticas" },
     { path: "/settings", label: "Configuración", requiresAuth: true }, // Only visible if the user is logged in
   ];
 
