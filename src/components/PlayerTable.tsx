@@ -29,7 +29,7 @@ const PlayersTable: React.FC<PlayerTableProps> = ({ players, onEdit }) => {
                     <th scope="row" className="pl-4 py-4 font-medium text-black whitespace-nowrap">
                       {player.name}
                     </th>
-                    <td scope="row" className="py-4">
+                    <td scope="row" className={`py-4 ${player.active ? 'text-[#49935b]' : 'text-[#d85858 ]'}`}>
                       {player.active ? 'Activo ' : 'Inactivo'}
                     </td>
                     <td className="px-6 py-4 text-right">
