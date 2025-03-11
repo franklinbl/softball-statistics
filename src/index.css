@@ -14,3 +14,9 @@ input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
+.lobster-regular {
+  font-family: "Lobster", sans-serif;
+  transform: rotate(-5deg);
+  font-style: normal;
+}

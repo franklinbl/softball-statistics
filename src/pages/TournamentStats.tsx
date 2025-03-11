@@ -168,7 +168,7 @@ const TournamentStats: React.FC = () => {
         {selectedGame && (
           <GameForm
             onClose={closeEditModal}
-            initialData={selectedGame} // Pasamos los datos iniciales del juego seleccionado
+            initialData={selectedGame}
           />
         )}
       </Modal>

@@ -32,10 +32,10 @@ const MenuBar: React.FC = () => {
       <div className="max-w-screen-xl mx-auto grid grid-cols-1 md:grid-cols-3 items-center px-4">
         {/* Logo (Visible on all devices) */}
         <div className="flex justify-between items-center">
-          <a className="flex items-center">
+          <Link to="/" className="flex items-center">
             <img src="/assets/caimanes.png" className="h-20" alt="Caimanes Logo" />
-            <span className="self-center text-2xl font-semibold whitespace-nowrap text-black">Caimanes</span>
-          </a>
+            <span className="self-center text-2xl font-semibold whitespace-nowrap text-black lobster-regular">Caimanes</span>
+          </Link>
 
           {/* Hamburger button (visible only on mobile devices, in the third column) */}
           <div className="md:hidden">
