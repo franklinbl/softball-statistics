@@ -69,7 +69,7 @@ const GameTable: React.FC<GameTableProps> = ({games, openModalWithGameDetails, o
                 </tr>
               ))
             ) : (
-              <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
+              <tr className="bg-white border-b border-[#F0F1F3]">
                   <td className="px-6 py-4 text-center" colSpan={3}>
                     No hay juegos disponibles.
                   </td>

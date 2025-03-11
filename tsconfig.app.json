@@ -25,5 +25,5 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
   },
-  "include": ["src", "public/assets"]
+  "include": ["src", "public/assets", "scripts"]
 }
