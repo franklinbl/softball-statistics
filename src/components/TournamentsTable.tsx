@@ -47,7 +47,7 @@ const TournamentsTable: React.FC<TournamentsTableProps> = ({ tournaments, onEdit
                   <td className="py-4">{formatDate(tournament.startDate)}</td>
                   <td className="py-4">{formatDate(tournament.endDate)}</td>
                   <td className={`py-4 ${tournament.active ? 'text-[#49935b]' : 'text-[#d85858 ]'}`}>
-                    {tournament.active ? 'Activo' : 'Finalizado'}
+                    {tournament.active ? 'En curso' : 'Finalizado'}
                   </td>
                   <td className="pr-4 py-4 text-right">
                     {user && (
@@ -93,7 +93,7 @@ const TournamentsTable: React.FC<TournamentsTableProps> = ({ tournaments, onEdit
               <p className="text-xs text-gray-500">Inicio: {formatDate(tournament.startDate)}</p>
               <p className="text-xs text-gray-500">Fin: {formatDate(tournament.endDate)}</p>
               <span className={`text-xs px-2 py-1 rounded w-fit ${tournament.active ? 'bg-[#49a35c] text-white' : 'bg-[#d85858] text-white'}`}>
-                {tournament.active ? 'Activo' : 'Finalizado'}
+                {tournament.active ? 'En curso' : 'Finalizado'}
               </span>
             </div>
           </div>
