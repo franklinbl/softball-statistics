@@ -1,9 +1,14 @@
 import admin from "firebase-admin";
 import { getFirestore } from "firebase-admin/firestore";
+import dotenv from 'dotenv';
+
+dotenv.config({ path: '.env' });
+
+console.log(process.env.VITE_FIREBASE_PROJECT_ID);
 
 // Initialize the Admin SDK with the emulator
 admin.initializeApp({
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID, // Your Firebase Project ID
+  projectId: process.env.VITE_FIREBASE_PROJECT_ID, // Your Firebase Project ID
 });
 
 // CConnect to Firestore Emulator
