@@ -46,7 +46,7 @@ const TournamentsTable: React.FC<TournamentsTableProps> = ({ tournaments, onEdit
                   </th>
                   <td className="py-4">{formatDate(tournament.startDate)}</td>
                   <td className="py-4">{formatDate(tournament.endDate)}</td>
-                  <td className={`py-4 ${tournament.active ? 'text-[#49935b]' : 'text-[#d85858 ]'}`}>
+                  <td className={`py-4 ${tournament.active ? 'text-[#49935b]' : 'text-[#d85858]'}`}>
                     {tournament.active ? 'En curso' : 'Finalizado'}
                   </td>
                   <td className="pr-4 py-4 text-right">
