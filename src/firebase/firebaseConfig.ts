@@ -19,6 +19,7 @@ const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
 
 // Connect to the emulator in development
+console.log(import.meta.env.DEV);
 if (import.meta.env.DEV) {
   connectFirestoreEmulator(db, 'localhost', 8080); // Port 8080 for Firestore
 }
