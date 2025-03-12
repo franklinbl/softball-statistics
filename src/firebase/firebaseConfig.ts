@@ -27,6 +27,6 @@ if (import.meta.env.VITE_USE_EMULATOR) {
 export const auth = getAuth(app);
 
 // Connect to the authentication emulator in development
-if (import.meta.env.DEV) {
+if (import.meta.env.VITE_USE_EMULATOR) {
   connectAuthEmulator(auth, 'http://localhost:9099'); // Port 9099 for Auth
 }
