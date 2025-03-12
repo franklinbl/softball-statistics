@@ -19,7 +19,7 @@ const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
 
 // Connect to the emulator in development
-if (import.meta.env.VITE_USE_EMULATOR) {
+if (import.meta.env.DEV) {
   connectFirestoreEmulator(db, 'localhost', 8080); // Port 8080 for Firestore
 }
 
@@ -27,6 +27,6 @@ if (import.meta.env.VITE_USE_EMULATOR) {
 export const auth = getAuth(app);
 
 // Connect to the authentication emulator in development
-if (import.meta.env.VITE_USE_EMULATOR) {
+if (import.meta.env.DEV) {
   connectAuthEmulator(auth, 'http://localhost:9099'); // Port 9099 for Auth
 }
