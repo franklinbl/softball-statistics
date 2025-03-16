@@ -25,7 +25,7 @@ const TournamentStats: React.FC = () => {
   const fetchGamesByTournament = useCallback(async () => {
     if (!id) return;
     try {
-      const gamesData = await getCollection<Game>('games', [['tournament.id', '==', id]]);
+      const gamesData = await getCollection<Game>('games', [['tournament.id', '==', id]], [{ field: "date", direction: "desc" }]);
       setGames(gamesData);
     } catch (error) {
       console.error('Error al obtener juegos del torneo:', error);

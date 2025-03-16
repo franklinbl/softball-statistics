@@ -48,8 +48,7 @@ const Login: React.FC = () => {
 
         <button
           type="submit"
-          className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition-colors"
-        >
+          className="mt-4 px-5 bg-[#37A63D] text-white py-2 rounded hover:bg-green-700 transition-colors">
           Iniciar Sesión
         </button>
       </form>

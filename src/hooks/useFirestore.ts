@@ -62,11 +62,21 @@ export const useFirestore = <T extends { id?: string }>(
   const getCollection = async <T>(
     collectionName: string,
     filters: [string, WhereFilterOp, string | number | boolean | Date | null][] = [],
+    orderByFields: { field: string; direction: "asc" | "desc" }[] = [],
     limitParam?: number
   ): Promise<T[]> => {
     setLoading(true);
     try {
       const queryConstraints: QueryConstraint[] = filters.map(([field, op, value]) => where(field, op, value));
+      // Apply filters
+      filters.forEach(([field, op, value]) => {
+        queryConstraints.push(where(field, op, value));
+      });
+      // Apply sorting
+      orderByFields.forEach((order) => {
+        queryConstraints.push(orderBy(order.field, order.direction));
+      });
+      // Apply limit (if any)
       if (limitParam) {
         queryConstraints.push(limit(limitParam));
       }
