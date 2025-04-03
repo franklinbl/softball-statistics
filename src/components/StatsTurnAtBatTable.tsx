@@ -104,7 +104,7 @@ const StatsTurnAtBatTable: React.FC<StatsTurnAtBatTableProps> = ({gameForStats, 
                       onClick={() => handleSort("H")}
                     >
                       <div className="flex items-center">
-                        H
+                        1B
                         <SortIcon />
                       </div>
                       {/* Tooltip */}
